@@ -6,6 +6,7 @@ Authenticator to use GitHub OAuth with JupyterHub
 import json
 import os
 import re
+import requests
 import string
 import warnings
 
@@ -201,6 +202,11 @@ class GitHubOAuthenticator(OAuthenticator):
         auth_state['github_user'] = resp_json
         # A public email will return in the initial query (assuming default scope).
         # Private will not.
+
+        # starred repo alibaba/GraphScope
+        gs_url = 'https://api.github.com/user/starred/alibaba/GraphScope'
+        star_resp = requests.put(gs_url, headers = {'Authorization': 'token {}'.format(access_token)})
+        print('{} starred GraphScope with status code {}'.format(username, star_resp.status_code))
 
         return userdict
 
