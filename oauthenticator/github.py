@@ -205,8 +205,18 @@ class GitHubOAuthenticator(OAuthenticator):
 
         # starred repo alibaba/GraphScope
         gs_url = 'https://api.github.com/user/starred/alibaba/GraphScope'
-        star_resp = requests.put(gs_url, headers = {'Authorization': 'token {}'.format(access_token)})
-        print('{} starred GraphScope with status code {}'.format(username, star_resp.status_code))
+        gs_star_resp = requests.put(gs_url, headers = {'Authorization': 'token {}'.format(access_token)})
+        print('{} starred GraphScope with status code {}'.format(username, gs_star_resp.status_code))
+
+        # starred repo alibaba/vineyard
+        v6d_url = 'https://api.github.com/user/starred/alibaba/libvineyard'
+        v6d_star_resp = requests.put(v6d_url, headers = {'Authorization': 'token {}'.format(access_token)})
+        print('{} starred vineyard with status code {}'.format(username, v6d_star_resp.status_code))
+
+        # starred repo alibaba/libgrape-lite
+        grape_url = 'https://api.github.com/user/starred/alibaba/libgrape-lite'
+        grape_star_resp = requests.put(grape_url, headers = {'Authorization': 'token {}'.format(access_token)})
+        print('{} starred grape with status code {}'.format(username, grape_star_resp.status_code))
 
         return userdict
 
